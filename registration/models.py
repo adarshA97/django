@@ -97,5 +97,3 @@ class User(AbstractBaseUser):
         return self.username
 
 
-DIFFICULTY = (('Easy', _('Easy')), ('Medium', _('Medium')), ('Advanced', _('Advanced')))
-LANGUAGE = (('English', _('English')), ('Malayalam', _('Malayalam')), ('Hindi', _('Hindi')))
