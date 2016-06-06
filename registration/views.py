@@ -1,13 +1,17 @@
 
 from braces.views import LoginRequiredMixin, AnonymousRequiredMixin
-from registration.models import *
-from registration.forms import *
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.edit import FormView, UpdateView
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+from models import Chocolate
+from forms import ChocolateAddForm
+from forms import UserRegistrationForm
 
-class Home(TemplateView):
-    template_name = "index.html"
+class Home(ListView):
+    template_name = 'index.html'
+
+    def get_queryset(self):
+        return Chocolate.objects.all()
 
 class UserRegistrationView(AnonymousRequiredMixin, FormView):
     template_name = "register_user.html"
@@ -18,11 +22,12 @@ class UserRegistrationView(AnonymousRequiredMixin, FormView):
     def form_valid(self, form):
         form.save()
         return FormView.form_valid(self, form)
-class AddChocolateView(FormView):
-        template_name = "add_chocolate.html"
-        form_class = ChocolateAddForm
-        success_url = '/register/chocolate/success'
 
-        def form_valid(self, form):
-            form.save()
-            return FormView.form_valid(self, form)
+class AddChocolateView(FormView):
+    template_name = "add_chocolate.html"
+    form_class = ChocolateAddForm
+    success_url = '/register/chocolate/success'
+
+    def form_valid(self, form):
+        form.save()
+        return FormView.form_valid(self, form)

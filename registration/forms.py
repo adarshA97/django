@@ -7,7 +7,6 @@ from django.forms.models import ModelForm
 
 
 
-
 user_widgets = {
     'user_first_name': forms.TextInput(attrs={'placeholder':_('First Name'), 'required': True}),
     'user_dob': forms.TextInput(attrs={'placeholder':_('date of birth'), 'required': True}),
