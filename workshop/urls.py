@@ -15,7 +15,7 @@ urlpatterns = [
 
      url(r'^user/logout/$',
          auth_views.logout,
-         {'template_name': 'logout.html'},
+         {'template_name': 'logout..html'},
          name='logout'),
 ]
 
