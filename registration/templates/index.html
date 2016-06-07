@@ -78,34 +78,38 @@
     </div><!-- /.container-fluid -->
 </nav>
 <div class="col-md-8 col-md-offset-2 well">
-    <table class="table table-hover table-bordered table-responsive">
-        <thead>
+   <table class="table table-hover table-bordered table-responsive">
+    <thead>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Manufacturer
+        </th>
+        <th>
+            Price
+        </th>
+           <th>
+            More
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in object_list %}
         <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Description
-            </th>
-            <th>
-                Manufacturer
-            </th>
-            <th>
-                Price
-            </th>
+            <td> {{ item.name }} </td>
+            <td> {{ item.description }}</td>
+            <td> {{ item.manufacturer }}</td>
+            <td> {{ item.price }}</td>
+            <td> <a href="{% url 'chocolate_info' item.id %}">Info</a> </td>
         </tr>
-        </thead>
-        <tbody>
-        {% for item in object_list %}
-            <tr>
-                <td> {{ item.name }} </td>
-                <td> {{ item.description }}</td>
-                <td> {{ item.manufacturer }}</td>
-                <td> {{ item.price }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    {% endfor %}
+    </tbody>
+</table>
 </div>
 
 <div class="col-md-6 col-md-offset-5" style="padding-top: 10%">

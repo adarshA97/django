@@ -6,7 +6,7 @@ from django.views.generic import ListView
 from models import Chocolate
 from forms import ChocolateAddForm
 from forms import UserRegistrationForm
-
+from django.views.generic.detail import DetailView
 class Home(ListView):
     template_name = 'index.html'
 
@@ -31,3 +31,13 @@ class AddChocolateView(FormView):
     def form_valid(self, form):
         form.save()
         return FormView.form_valid(self, form)
+class ChocolateDetailsView(DetailView):
+    template_name = "chocolate_detail.html"
+
+    def get_object(self, queryset=None):
+        choco_id = self.kwargs['choco_id']
+        obj = Chocolate.objects.get(id=choco_id)
+        if obj:
+            return obj
+        else:
+            raise Http404("No details Found.")
